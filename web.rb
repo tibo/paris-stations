@@ -1,19 +1,28 @@
 require 'sinatra'
-require 'active_record'
+require 'mongoid'
+require 'json'
 
-ActiveRecord::Base.establish_connection(
-  adapter: 'postgresql', 
-  database: 'subway', 
-  encoding: 'unicode', 
-  pool: 5, 
-  username: 'tibo', 
-  password: '', 
-  host: 'localhost' )
+Mongoid.load!("mongoid.yml")
+Mongoid.logger.level = Logger::DEBUG
+Moped.logger.level = Logger::DEBUG
 
-class Station < ActiveRecord::Base
-end
+require './station.rb'
 
 get '/' do
-  stations = Station.all()
-  stations.to_json
+  content_type :json
+
+  latlong = params[:ll].split(',')
+
+  if latlong.length == 2
+
+    lat = latlong.first.to_f
+    lng = latlong[1].to_f
+
+    stations = Station.limit(10).geo_near([ lat, lng ])
+    stations.to_json
+
+  else
+    halt(500)
+  end
+
 end
