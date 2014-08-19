@@ -11,18 +11,38 @@ require './station.rb'
 get '/' do
   content_type :json
 
-  latlong = params[:ll].split(',')
-
-  if latlong.length == 2
-
-    lat = latlong.first.to_f
-    lng = latlong[1].to_f
-
-    stations = Station.limit(10).geo_near([ lat, lng ])
-    stations.to_json
-
+  if params[:ll].nil?
+    halt 500, {:error => "Latitude and longitude required"}.to_json
   else
-    halt(500)
+      
+    latlong = params[:ll].split(',')
+
+    if latlong.length != 2
+      halt 500, {:error => "Invalid latitude and longitude"}.to_json
+    else
+
+      number_of_results = 10
+
+      if !params[:n].nil?
+        number_of_results = params[:n].to_i
+      end
+
+      lat = latlong.first.to_f
+      lng = latlong[1].to_f
+
+      if params[:types]
+        types = params[:types].split(',')
+
+        if types.length > 0
+          stations = Station.where(type: {'$in' => types}).limit(number_of_results).geo_near([ lat, lng ])
+        end
+
+      else
+        stations = Station.limit(number_of_results).geo_near([ lat, lng ])
+      end
+      
+      stations.to_json
+    end
   end
 
 end
