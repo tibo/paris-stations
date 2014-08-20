@@ -2,7 +2,7 @@ require 'mongoid'
 require File.join(File.dirname(__FILE__), '../station.rb')
 require 'csv'
 
-Mongoid.load!("../mongoid.yml", :production)
+Mongoid.load!(File.join(File.dirname(__FILE__), '../mongoid.yml'))
 Mongoid.logger.level = Logger::DEBUG
 Moped.logger.level = Logger::DEBUG
 
