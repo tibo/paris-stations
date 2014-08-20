@@ -11,8 +11,4 @@ class Station
   field :name, type: String
   field :city, type: String
   field :type, type: String
-
-  def to_json
-  	return {:name => self.name}.to_json
-  end
 end
