@@ -26,5 +26,6 @@ CSV.foreach(file, col_sep: '#') do |row|
 	
 	station.save
 
+	puts "may need to run: db.stations.ensureIndex({\"location\":\"2d\"})"
 
 end
