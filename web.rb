@@ -12,13 +12,13 @@ get '/stations' do
   content_type :json
 
   if params[:ll].nil?
-    halt 500, {:error => "Latitude and longitude required"}.to_json
+    halt 400, {:error => "Latitude and longitude required"}.to_json
   else
       
     latlong = params[:ll].split(',')
 
     if latlong.length != 2
-      halt 500, {:error => "Invalid latitude and longitude"}.to_json
+      halt 400, {:error => "Invalid latitude and longitude"}.to_json
     else
 
       number_of_results = 10
