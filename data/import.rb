@@ -8,7 +8,9 @@ Moped.logger.level = Logger::DEBUG
 
 Station.delete_all
 
-CSV.foreach('ratp_arret_graphique_01.csv', col_sep: '#') do |row|
+file = File.join(File.dirname(__FILE__), 'ratp_arret_graphique_01.csv')
+
+CSV.foreach(file, col_sep: '#') do |row|
 
 	puts row.inspect
 	
