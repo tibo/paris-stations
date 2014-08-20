@@ -8,7 +8,7 @@ Moped.logger.level = Logger::DEBUG
 
 require './station.rb'
 
-get '/' do
+get '/stations' do
   content_type :json
 
   if params[:ll].nil?
@@ -45,4 +45,10 @@ get '/' do
     end
   end
 
+end
+
+get '/transport_types' do
+  types = Station.distinct(:type)
+
+  types.to_json
 end
