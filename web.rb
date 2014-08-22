@@ -8,6 +8,10 @@ Moped.logger.level = Logger::DEBUG
 
 require './station.rb'
 
+get '/' do
+  send_file 'views/index.html'
+end
+
 get '/stations' do
   content_type :json
 

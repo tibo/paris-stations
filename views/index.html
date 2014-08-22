@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=set_to_true_or_false"></script>
+
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map { height: 95% }
+    </style>
+    <script type="text/javascript">
+
+        var initial_center = new google.maps.LatLng(48.856614,2.3522219);
+
+        var map;
+        var user_marker;
+        var user_position;
+        var station_markers = new Array();
+
+        var transport_types = new Array();
+ 
+        function handle_geolocation_query(position){
+
+            user_position = position;
+
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+            map.setZoom(17);
+            map.setCenter(latlng);
+
+            user_marker = new google.maps.Marker({
+              position: latlng,
+              map: map,
+              title: "Vous êtes ici"
+            });
+
+            getStations();
+        }
+
+        function getStations(){
+
+          if (user_position !== 'undefined')
+          {
+            station_markers.forEach(function(marker) 
+            {
+              marker.setMap(null);
+            })
+
+            station_markers = new Array();
+
+
+            wsURL = '/stations?ll=' + user_position.coords.latitude + ',' + user_position.coords.longitude
+
+            if (transport_types.length > 0) {
+              wsURL += '&types='
+              transport_types.forEach(function(type) {
+                wsURL += type + ','
+              });
+            };
+
+            console.log(wsURL);
+
+              $.getJSON(wsURL, function(data) {
+                data.forEach(function(station) {
+                  var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(station.location[0], station.location[1]),
+                    map: map,
+                    title: station.name
+                  });
+
+                  station_markers.push(marker);
+                });
+              });
+            }
+        }
+
+        function setTransportTypes(){
+          $.getJSON('/transport_types', function(data) {
+            transport_types = data;
+
+            transport_types_form = document.getElementById("station_types_form")
+            transport_types.forEach(function(type) 
+            {
+              transport_types_form.innerHTML += '<input type="checkbox" name="transport_type" value="' + type + '" checked/>' + type;
+            });
+          });
+        }
+
+        function transportTypesChange(){
+
+          transport_types = new Array();
+
+          var checkboxes = document.getElementsByName('transport_type');
+
+          for (var i=0;i<checkboxes.length;i++) {
+            if (checkboxes[i].checked) {
+              transport_types.push(checkboxes[i].value);
+            };
+          }
+
+          getStations();
+        }
+
+        $(function(){ 
+
+          var optionsGmaps = {
+              center: initial_center,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              zoom: 12
+          };
+
+          map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
+
+          if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(handle_geolocation_query);
+          } 
+          else {
+            alert("no navigation")
+          }
+
+          setTransportTypes();
+        });
+    
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="station_types">
+      <form id="station_types_form" onchange="transportTypesChange()">
+      </form>
+    </div>
+  </body>
+</html>
