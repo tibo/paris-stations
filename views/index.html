@@ -114,12 +114,7 @@
 
           map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
 
-          if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(handle_geolocation_query);
-          } 
-          else {
-            alert("no navigation")
-          }
+          navigator.geolocation.getCurrentPosition(handle_geolocation_query);
 
           setTransportTypes();
         });
