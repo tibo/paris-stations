@@ -10,8 +10,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="stylesheet" href="ratchet.min.css">
-    <script src="ratchet.min.js"></script>
+    <link rel="stylesheet" href="ratchet/css/ratchet.min.css">
+    <script src="ratchet/js/ratchet.min.js"></script>
 
     <style type="text/css">
       html { height: 100% }
@@ -100,6 +100,15 @@
             }
         }
 
+        function setup_marker_info(marker){
+          google.maps.event.addListener(marker, 'click', function() {
+              var infowindow = new google.maps.InfoWindow({
+                content: marker.title
+              });
+              infowindow.open(map, marker);
+            });
+        }
+
         function setTransportTypes(){
           $.getJSON('/transport_types', function(data) {
             transport_types = data;
@@ -142,17 +151,7 @@
           locate_user();
 
           setTransportTypes();
-        });
-
-        function setup_marker_info(marker){
-          google.maps.event.addListener(marker, 'click', function() {
-              var infowindow = new google.maps.InfoWindow({
-                content: marker.title
-              });
-              infowindow.open(map, marker);
-            });
-        }
-    
+        });    
     </script>
   </head>
   <body>
