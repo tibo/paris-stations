@@ -11,4 +11,16 @@ class Station
   field :name, type: String
   field :city, type: String
   field :type, type: String
+
+  def as_json(options={})
+    attrs = super(options)
+    
+    attrs.delete("_id")
+
+    attrs.delete("location")
+    attrs = attrs.merge({"latitude" => self.location[0]})
+    attrs = attrs.merge({"longitude" => self.location[1]})
+
+    attrs
+  end
 end

@@ -86,7 +86,7 @@
                   }
 
                   var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(station.location[0], station.location[1]),
+                    position: new google.maps.LatLng(station.latitude, station.longitude),
                     map: map,
                     title: station.name,
                     icon: marker_icon
