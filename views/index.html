@@ -6,10 +6,17 @@
 
 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="ratchet.min.css">
+    <script src="ratchet.min.js"></script>
+
     <style type="text/css">
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
-      #map { height: 95% }
+      #map { height: 100% }
     </style>
     <script type="text/javascript">
 
@@ -97,10 +104,12 @@
           $.getJSON('/transport_types', function(data) {
             transport_types = data;
 
-            transport_types_form = document.getElementById("station_types_form")
+            transport_types_form = document.getElementById("station_types_list");
+
             transport_types.forEach(function(type) 
             {
-              transport_types_form.innerHTML += '<input type="checkbox" name="transport_type" value="' + type + '" checked/>' + type;
+              transport_types_form.innerHTML += '<li class="table-view-cell"><input type="checkbox" name="transport_type" value="' + type + '" checked/>&nbsp;&nbsp;' + type + '</li>';
+
             });
           });
         }
@@ -147,11 +156,36 @@
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    <div id="station_types">
-      <form id="station_types_form" onchange="transportTypesChange()">
-      </form>
-      <button onclick="locate_user()">Locate Me</button>
+    <header class="bar bar-nav">
+      <h1 class="title">Paris Station</h1>
+      <a class="icon icon-gear pull-right" href="#settingsModal"></a>
+    </header>
+
+    <div class="bar bar-footer">
+      <a class="icon icon-refresh pull-right" onclick="locate_user()"></a>
     </div>
+
+    <div class="content">
+      <div id="map"></div>
+    </div>
+
+    <!-- Compose modal -->
+    <div id="settingsModal" class="modal">
+      <header class="bar bar-nav">
+        <a class="btn btn-link pull-right" href="#settingsModal">
+          <strong>Done</strong>
+        </a>
+        <h1 class="title">Transport Types</h1>
+      </header>
+
+      <div class="content">
+        <form onchange="transportTypesChange()">
+          <ul id="station_types_list" class="table-view">
+          </ul>
+        </form>
+
+      </div>
+    </div><!-- /.modal -->
+
   </body>
 </html>
