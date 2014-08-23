@@ -38,7 +38,8 @@
             user_marker = new google.maps.Marker({
               position: latlng,
               map: map,
-              title: "Vous êtes ici"
+              title: "Vous êtes ici",
+              icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
             });
 
             getStations();
@@ -69,10 +70,17 @@
 
               $.getJSON(wsURL, function(data) {
                 data.forEach(function(station) {
+                  var marker_icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+
+                  if (station.ratp_id == data[0].ratp_id) {
+                    marker_icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                  }
+
                   var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(station.location[0], station.location[1]),
                     map: map,
-                    title: station.name
+                    title: station.name,
+                    icon: marker_icon
                   });
 
                   station_markers.push(marker);
