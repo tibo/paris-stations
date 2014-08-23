@@ -21,6 +21,10 @@
         var station_markers = new Array();
 
         var transport_types = new Array();
+
+        function locate_user(){
+          navigator.geolocation.getCurrentPosition(handle_geolocation_query);
+        }
  
         function handle_geolocation_query(position){
 
@@ -114,7 +118,7 @@
 
           map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
 
-          navigator.geolocation.getCurrentPosition(handle_geolocation_query);
+          locate_user();
 
           setTransportTypes();
         });
@@ -126,6 +130,7 @@
     <div id="station_types">
       <form id="station_types_form" onchange="transportTypesChange()">
       </form>
+      <button onclick="locate_user()">Locate Me</button>
     </div>
   </body>
 </html>
