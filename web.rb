@@ -3,8 +3,8 @@ require 'mongoid'
 require 'json'
 
 Mongoid.load!("mongoid.yml")
-Mongoid.logger.level = Logger::DEBUG
-Moped.logger.level = Logger::DEBUG
+Mongoid.logger.level = Logger::ERROR
+Moped.logger.level = Logger::ERROR
 
 require './station.rb'
 
