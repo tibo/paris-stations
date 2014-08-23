@@ -42,6 +42,8 @@
               icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
             });
 
+            setup_marker_info(user_marker);
+
             getStations();
         }
 
@@ -82,6 +84,8 @@
                     title: station.name,
                     icon: marker_icon
                   });
+
+                  setup_marker_info(marker);
 
                   station_markers.push(marker);
                 });
@@ -130,6 +134,15 @@
 
           setTransportTypes();
         });
+
+        function setup_marker_info(marker){
+          google.maps.event.addListener(marker, 'click', function() {
+              var infowindow = new google.maps.InfoWindow({
+                content: marker.title
+              });
+              infowindow.open(map, marker);
+            });
+        }
     
     </script>
   </head>
