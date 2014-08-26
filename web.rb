@@ -2,13 +2,13 @@ require 'sinatra'
 require 'mongoid'
 require 'json'
 
-Mongoid.load!("mongoid.yml")
+Mongoid.load!("./config/mongoid.yml")
 Mongoid.logger.level = Logger::ERROR
 Moped.logger.level = Logger::ERROR
 
 require 'newrelic_rpm'
 
-require './station.rb'
+require './models/station.rb'
 
 get '/' do
   send_file 'views/index.html'

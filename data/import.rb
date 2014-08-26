@@ -1,8 +1,8 @@
 require 'mongoid'
-require File.join(File.dirname(__FILE__), '../station.rb')
+require File.join(File.dirname(__FILE__), '../models/station.rb')
 require 'csv'
 
-Mongoid.load!(File.join(File.dirname(__FILE__), '../mongoid.yml'))
+Mongoid.load!(File.join(File.dirname(__FILE__), '../config/mongoid.yml'))
 Mongoid.logger.level = Logger::ERROR
 Moped.logger.level = Logger::ERROR
 
