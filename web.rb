@@ -6,12 +6,9 @@ Mongoid.load!("mongoid.yml")
 Mongoid.logger.level = Logger::ERROR
 Moped.logger.level = Logger::ERROR
 
+require 'newrelic_rpm'
+
 require './station.rb'
-
-configure :production do
-  require 'newrelic_rpm'
-end
-
 
 get '/' do
   send_file 'views/index.html'
