@@ -8,6 +8,11 @@ Moped.logger.level = Logger::ERROR
 
 require './station.rb'
 
+configure :production do
+  require 'newrelic_rpm'
+end
+
+
 get '/' do
   send_file 'views/index.html'
 end
