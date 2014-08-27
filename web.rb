@@ -6,7 +6,7 @@ Mongoid.load!("./config/mongoid.yml")
 Mongoid.logger.level = Logger::ERROR
 Moped.logger.level = Logger::ERROR
 
-if :production
+configure :production do
   require 'newrelic_rpm'
 end
 
