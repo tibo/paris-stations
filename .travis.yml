@@ -5,6 +5,6 @@ bundler_args: --without production
 services:
   - mongodb
 before_script:
-  - rake data:import
+  - bundle exec rake data:import
 script:
   - bundle exec rake spec

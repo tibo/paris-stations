@@ -6,12 +6,14 @@ Mongoid.load!("./config/mongoid.yml")
 Mongoid.logger.level = Logger::ERROR
 Moped.logger.level = Logger::ERROR
 
-require 'newrelic_rpm'
+if :production
+  require 'newrelic_rpm'
+end
 
 require './models/station.rb'
 
 class ParisStations < Sinatra::Application
-  
+
   get '/' do
     send_file 'views/index.html'
   end
