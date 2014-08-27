@@ -30,13 +30,13 @@ API Base URL: `http://paris-stations.herokuapp.com/`
 
 * `GET /stations` return an array of Stations sorted relatively to the location set in parameters
 
-** Arguments **
+**Arguments**
 
 - ll -> Latitude and Longitude separated by a comma (**REQUIRED**)
 -  n -> Number of results (default 10)
 -  types -> types of transportation way, see the /transport_types endpoint for available values (default all)
 
-** Response **
+**Response**
 
 ```
 [
@@ -70,18 +70,18 @@ API Base URL: `http://paris-stations.herokuapp.com/`
 ]
 ```
 
-(original call : http://paris-stations.herokuapp.com/stations?ll=48.9140418,2.3326823&n=3&types=metro)
+(original call : `http://paris-stations.herokuapp.com/stations?ll=48.9140418,2.3326823&n=3&types=metro`)
 
 #### GET Transport Types
 
 * `GET /transport_types` return the array of transport types availables
 
-** Response **
+**Response**
 
 ```
 ["metro","rer","bus","tram"]
 ```
-(original call http://paris-stations.herokuapp.com/transport_types)
+(original call `http://paris-stations.herokuapp.com/transport_types`)
 
 
 ## Licence
