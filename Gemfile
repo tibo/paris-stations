@@ -5,9 +5,6 @@ gem 'rake'
 
 gem 'sinatra', '~> 1.4.5'
 
-# gem 'activerecord'
-# gem 'pg'
-
 gem "mongoid", "~> 4.0.0"
 
 group :production do

@@ -14,6 +14,8 @@ require './models/station.rb'
 
 class ParisStations < Sinatra::Application
 
+  set :root, File.dirname(__FILE__)
+
   get '/' do
     send_file 'views/index.html'
   end
