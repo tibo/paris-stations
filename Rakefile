@@ -50,6 +50,11 @@ namespace :data do
 		
 	end
 
-	puts "may need to run: db.stations.ensureIndex({\"location\":\"2d\"})"
+	begin
+		Station.create_indexes
+	rescue Object => e
+		warn "error creating indexes on Station"
+		warn "run: db.stations.ensureIndex({\"location\":\"2d\"}) to create it manualy"
+	end
   end
 end
