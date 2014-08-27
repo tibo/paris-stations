@@ -6,3 +6,5 @@ services:
   - mongodb
 before_script:
   - rake data:import
+script:
+  - bundle exec rake spec
