@@ -2,7 +2,7 @@ This project is just a simple API to provide the nearest public transport statio
 
 
 ## Data sources
----
+-----------------------------
 
 The data provided by this API use the official data provided by RATP on their [Open Data website](http://data.ratp.fr/).
 
@@ -12,7 +12,7 @@ This API add the ability to sort the stations by proximity, filtered by transpor
 
 
 ## Technical stack
----
+-----------------------------
 
 This API is a simple Sintatra app with a MongoDB database, using MongoID to provide most of the nearby/distance features.
 
@@ -20,17 +20,17 @@ Feel free to for this project if anything come to your mind!
 
 
 ## Demo Webapp
----
+-----------------------------
 
 A demo very basic webapp made with JQuery and Ratchet is available on [http://paris-stations.herokuapp.com/](http://paris-stations.herokuapp.com/)
 
 
 ## API Documentation
----
+-----------------------------
 
 API Base URL: `http://paris-stations.herokuapp.com/`
 
-### GET Stations
+#### GET Stations
 
 * `GET /stations` return an array of Stations sorted relatively to the location set in parameters
 
@@ -76,7 +76,7 @@ API Base URL: `http://paris-stations.herokuapp.com/`
 
 (original call : http://paris-stations.herokuapp.com/stations?ll=48.9140418,2.3326823&n=3&types=metro)
 
-### GET Transport Types
+#### GET Transport Types
 
 * `GET /transport_types` return the array of transport types availables
 
@@ -88,7 +88,8 @@ API Base URL: `http://paris-stations.herokuapp.com/`
 (original call http://paris-stations.herokuapp.com/transport_types)
 
 
-### Licence
+## Licence
+-----------------------------
 
 The datas used in this project are available according to the [Etalab licence](http://wiki.data.gouv.fr/wiki/Licence_Ouverte_/_Open_Licence).
 
