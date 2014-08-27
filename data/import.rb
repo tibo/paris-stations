@@ -1,5 +1,5 @@
 require 'mongoid'
-require File.join(File.dirname(__FILE__), '../models/station.rb')
+require './models/station.rb'
 require 'csv'
 
 Mongoid.load!(File.join(File.dirname(__FILE__), '../config/mongoid.yml'))
