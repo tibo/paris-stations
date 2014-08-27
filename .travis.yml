@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.0.0-p247
+bundler_args: --without production
+services:
+  - mongodb
+before_script:
+  - rake data:import

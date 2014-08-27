@@ -10,7 +10,9 @@ gem 'sinatra', '~> 1.4.5'
 
 gem "mongoid", "~> 4.0.0"
 
-gem 'newrelic_rpm'
+group :production do
+	gem 'newrelic_rpm'
+end
 
 group :test do
 	gem 'rspec'
