@@ -1,5 +1,6 @@
 This project is just a simple API to provide the nearest public transport stations in the Paris area.
 
+[![Build Status](https://travis-ci.org/tibo/paris-stations.svg?branch=master)](https://travis-ci.org/tibo/paris-stations)
 
 ## Data sources
 
