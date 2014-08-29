@@ -84,6 +84,9 @@ API Base URL: `http://paris-stations.herokuapp.com/`
 ```
 (original call `http://paris-stations.herokuapp.com/transport_types`)
 
+## Deploy your's
+
+ [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/tibo/paris-stations)
 
 ## Licence
 

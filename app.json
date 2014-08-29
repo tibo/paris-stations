@@ -1,0 +1,20 @@
+{
+  "name": "Paris Stations",
+  "description": "This project is just a simple API to provide the nearest public transport stations in the Paris area.",
+  "keywords": [
+    "paris",
+    "transportation",
+    "subway",
+    "bus"
+  ],
+  "website": "https://github.com/tibo/paris-stations",
+  "repository": "https://github.com/tibo/paris-stations",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "bundle exec rake data:import"
+  },
+  "addons": [
+    "mongohq:sandbox",
+    "newrelic:stark"
+  ]
+}
