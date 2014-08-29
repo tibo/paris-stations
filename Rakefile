@@ -7,9 +7,11 @@ require 'csv'
 
 ENV['RACK_ENV'] ||= 'development'
 
-RSpec::Core::RakeTask.new do |task|
-  task.rspec_opts = ["-c", "-f progress", "-r ./spec/spec_helper.rb"]
-  task.pattern    = 'spec/**/*_spec.rb'
+if ENV['RACK_ENV'] != 'production'
+	RSpec::Core::RakeTask.new do |task|
+	  task.rspec_opts = ["-c", "-f progress", "-r ./spec/spec_helper.rb"]
+	  task.pattern    = 'spec/**/*_spec.rb'
+	end
 end
 
 namespace :data do
