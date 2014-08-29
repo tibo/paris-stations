@@ -1,7 +1,7 @@
 This project is just a simple API to provide the nearest public transport stations in the Paris area.
 
 [![Build Status](https://travis-ci.org/tibo/paris-stations.svg?branch=master)](https://travis-ci.org/tibo/paris-stations)
-[![Coverage Status](https://coveralls.io/repos/tibo/paris-stations/badge.png)](https://coveralls.io/r/tibo/paris-stations)
+[![Coverage Status](https://img.shields.io/coveralls/tibo/paris-stations.svg)](https://coveralls.io/r/tibo/paris-stations?branch=master)
 
 ## Data sources
 
